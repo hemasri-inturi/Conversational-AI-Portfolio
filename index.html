@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemasri Inturi — Senior Conversational AI Engineer</title>
+<meta name="description" content="Conversational AI portfolio of Hemasri Inturi: multi-turn dialogue systems, RAG, LLM orchestration, voice UX.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0e14; --bg2:#11151f; --card:#151b28; --card2:#1a2233;
+  --line:#232c40; --text:#e8ecf4; --muted:#9aa5bd; --dim:#6b7690;
+  --acc:#6ee7ff; --acc2:#a78bfa; --green:#4ade80; --amber:#fbbf24; --red:#f87171;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:50;background:rgba(11,14,20,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+.brand{font-weight:800;font-size:1.05rem;letter-spacing:.5px}
+.brand span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem}
+nav ul a{color:var(--muted)}
+nav ul a:hover{color:var(--text);text-decoration:none}
+@media(max-width:640px){nav ul{display:none}}
+/* HERO */
+.hero{padding:110px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-120px;background:radial-gradient(600px 300px at 20% 10%,rgba(110,231,255,.10),transparent 60%),radial-gradient(600px 300px at 85% 30%,rgba(167,139,250,.12),transparent 60%);pointer-events:none}
+.eyebrow{display:inline-block;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--acc);border:1px solid rgba(110,231,255,.35);padding:6px 14px;border-radius:999px;margin-bottom:22px}
+.hero h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.08;font-weight:800;margin-bottom:14px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-size:1.15rem;color:var(--muted);max-width:640px;margin-bottom:32px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:.95rem;border:1px solid var(--line);color:var(--text);background:var(--card);transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--acc);text-decoration:none}
+.btn.primary{background:linear-gradient(90deg,#0ea5c9,#7c5cf0);border:none;color:#fff}
+.hero-stats{display:flex;gap:36px;margin-top:56px;flex-wrap:wrap}
+.stat b{display:block;font-size:1.9rem;font-weight:800}
+.stat b em{font-style:normal;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--dim);font-size:.85rem}
+/* SECTIONS */
+section{padding:72px 0}
+.sec-head{margin-bottom:38px}
+.sec-head .kicker{color:var(--acc);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+.sec-head h2{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;margin-top:8px}
+.sec-head p{color:var(--muted);max-width:680px;margin-top:10px}
+/* CASE CARDS */
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.case{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:.25s;position:relative;overflow:hidden}
+.case::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--acc2));opacity:0;transition:.25s}
+.case:hover{transform:translateY(-4px);border-color:#33405e}
+.case:hover::after{opacity:1}
+.case .client{font-size:.78rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--acc2);font-weight:700}
+.case h3{font-size:1.28rem;margin:8px 0 14px;font-weight:700}
+.case h4{font-size:.82rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim);margin:16px 0 6px;font-weight:700}
+.case p,.case li{color:var(--muted);font-size:.94rem}
+.case ul{list-style:none}
+.case li{padding-left:18px;position:relative;margin-bottom:6px}
+.case li::before{content:"▸";position:absolute;left:0;color:var(--acc)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.74rem;background:var(--bg2);border:1px solid var(--line);color:var(--acc);padding:4px 10px;border-radius:6px}
+.outcome{margin-top:auto;padding-top:18px}
+.outcome .num{font-size:1.5rem;font-weight:800;color:var(--green)}
+/* FLOW DIAGRAM */
+.flow-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px 24px;overflow-x:auto}
+.flow{display:flex;align-items:stretch;justify-content:center;gap:0;min-width:900px}
+.node{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-align:center;min-width:150px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.node b{font-size:.92rem}
+.node span{font-size:.78rem;color:var(--muted)}
+.node.intent{border-color:rgba(110,231,255,.5)}
+.node.rag{border-color:rgba(167,139,250,.5)}
+.node.gen{border-color:rgba(74,222,128,.5)}
+.node.fallback{border-color:rgba(251,191,36,.55)}
+.node .icon{font-size:1.5rem}
+.arrow{display:flex;align-items:center;color:var(--dim);font-size:1.6rem;padding:0 6px;flex-shrink:0}
+.arrow small{display:block;font-size:.66rem;color:var(--dim);max-width:70px;text-align:center}
+.flow-legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;justify-content:center;font-size:.85rem;color:var(--muted)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.skill-cat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.skill-cat h3{font-size:1rem;margin-bottom:14px;color:var(--acc)}
+.skill-cat .tags{gap:7px}
+/* DEMO */
+.demo-shell{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;max-width:560px;margin:0 auto}
+.demo-head{background:var(--bg2);padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.demo-head .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#08131a}
+.demo-head b{font-size:.95rem}
+.demo-head span{display:block;font-size:.76rem;color:var(--green)}
+#chat{height:340px;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:82%;padding:11px 15px;border-radius:14px;font-size:.9rem;line-height:1.5;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.msg.bot{background:var(--bg2);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:linear-gradient(90deg,#0ea5c9,#7c5cf0);align-self:flex-end;border-bottom-right-radius:4px;color:#fff}
+.msg .intent{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--acc);margin-bottom:4px;letter-spacing:.5px}
+.demo-input{display:flex;border-top:1px solid var(--line)}
+.demo-input input{flex:1;background:var(--bg);border:none;color:var(--text);padding:15px 18px;font-size:.92rem;font-family:inherit;outline:none}
+.demo-input button{background:linear-gradient(90deg,#0ea5c9,#7c5cf0);border:none;color:#fff;padding:0 26px;font-weight:700;cursor:pointer;font-size:.92rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:14px 20px;border-top:1px solid var(--line);background:var(--bg2)}
+.chip{font-size:.78rem;border:1px solid var(--line);background:var(--card);color:var(--muted);padding:7px 13px;border-radius:999px;cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--acc);color:var(--text)}
+.demo-note{text-align:center;color:var(--dim);font-size:.82rem;margin-top:16px}
+/* CONTACT */
+.contact{background:var(--bg2);border-top:1px solid var(--line);text-align:center}
+.contact h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-bottom:12px}
+.contact p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--dim);font-size:.85rem}
+@media(max-width:640px){
+  .hero{padding:70px 0 56px}
+  section{padding:52px 0}
+  .case{padding:22px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Hemasri <span>Inturi</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Case Studies</a></li>
+      <li><a href="#flow">Dialogue Design</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#demo">Live Demo</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Conversational AI Portfolio</div>
+    <h1>Designing AI conversations that <span class="grad">feel human</span>.</h1>
+    <p class="tagline">I'm <strong style="color:var(--text)">Hemasri Inturi</strong>, a Senior Conversational AI Engineer with 10 years of experience building production chat and voice assistants — from intent discovery to multi-turn dialogue, RAG-grounded responses, and human-in-the-loop escalation.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">View Case Studies</a>
+      <a class="btn" href="#demo">Try the Live Demo</a>
+      <a class="btn" href="https://www.linkedin.com/in/hema-inturi31/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/hemasri-inturi/Conversational-AI-Portfolio" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b><em>10</em></b><span>years in AI/ML engineering</span></div>
+      <div class="stat"><b><em>4+</em></b><span>years designing conversational AI</span></div>
+      <div class="stat"><b><em>3</em></b><span>enterprise assistants shipped</span></div>
+      <div class="stat"><b><em>2</em></b><span>modalities: chat + voice</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">About</div>
+      <h2>Engineer first, designer by craft</h2>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;font-size:1.02rem;color:var(--muted)">
+      <p style="margin-bottom:14px">I build conversational AI end to end: dialogue strategy, intent taxonomies, conversation flows, prompt engineering, RAG grounding, and the production plumbing that keeps assistants reliable — evaluation, guardrails, observability, and escalation design.</p>
+      <p style="margin-bottom:14px">At <strong style="color:var(--text)">Eli Lilly</strong> I designed multi-turn conversational workflows for CMC portfolio knowledge retrieval. At <strong style="color:var(--text)">Janssen (J&amp;J)</strong> I built Copilot Studio–based healthcare assistants with human-in-the-loop escalation. At <strong style="color:var(--text)">Bank of America</strong> I modernized Erica's dialogue capabilities with voice support. At <strong style="color:var(--text)">Synchrony</strong> I designed voice and chat experiences for Sydney, the AI virtual assistant.</p>
+      <p>I care about conversations that respect the user's time: clear intent handling, honest fallbacks, and designs grounded in how people actually talk.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Case Studies</div>
+      <h2>Conversational AI in production</h2>
+      <p>Three enterprise assistants — each designed from intent discovery through dialogue flows, evaluation, and iteration.</p>
+    </div>
+    <div class="cases">
+
+      <div class="case">
+        <div class="client">Eli Lilly · Pharmaceutical</div>
+        <h3>CMC Portfolio Knowledge Assistant</h3>
+        <h4>Challenge</h4>
+        <p>Scientists and business users needed fast answers from CMC (Chemistry, Manufacturing, Controls) documentation — manufacturing SOPs, formulation records, and regulatory filings buried in long documents.</p>
+        <h4>Solution</h4>
+        <ul>
+          <li>Multi-turn conversational workflows with intent classification across manufacturing, formulation, and regulatory queries</li>
+          <li>Context-aware dialogue management with session memory and fallback handling</li>
+          <li>RAG-grounded responses over scientific documents with citation of sources</li>
+          <li>Dialogue flow diagrams, interaction scenarios, and response-validation strategies</li>
+          <li>Conversational testing for response accuracy, contextual relevance, and scientific terminology handling</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Azure OpenAI</span><span class="tag">RAG</span><span class="tag">Prompt Engineering</span><span class="tag">Multi-turn Dialogue</span>
+        </div>
+        <div class="outcome"><div class="num">−60%</div><span style="color:var(--muted);font-size:.88rem">time to find CMC documentation</span></div>
+      </div>
+
+      <div class="case">
+        <div class="client">Janssen (J&amp;J) · Healthcare</div>
+        <h3>Enterprise Healthcare AI Assistant</h3>
+        <h4>Challenge</h4>
+        <p>Healthcare business workflows needed conversational automation that could handle sensitive queries safely — with clear escalation paths when the assistant reached its limits.</p>
+        <h4>Solution</h4>
+        <ul>
+          <li>Designed conversational solutions on Microsoft Copilot Studio integrated with Azure AI and enterprise knowledge bases</li>
+          <li>Intent mapping, entity extraction, response personalization, and decision-tree dialogue paths</li>
+          <li>Human-in-the-loop escalation with full conversation context handoff</li>
+          <li>Prototyped and tested conversational flows using bot design tools and LLM orchestration frameworks</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Copilot Studio</span><span class="tag">Azure AI</span><span class="tag">Intent Mapping</span><span class="tag">HITL Escalation</span><span class="tag">Entity Extraction</span>
+        </div>
+        <div class="outcome"><div class="num">85%</div><span style="color:var(--muted);font-size:.88rem">of routine queries resolved without human handoff</span></div>
+      </div>
+
+      <div class="case">
+        <div class="client">Bank of America · Financial Services</div>
+        <h3>Enterprise Knowledge Bot (Erica)</h3>
+        <h4>Challenge</h4>
+        <p>Modernize a flagship banking assistant with secure, scalable conversational AI — extending chat-first Erica into voice, without compromising compliance or reliability.</p>
+        <h4>Solution</h4>
+        <ul>
+          <li>Context-aware dialogue management: session handling, fallback strategies, and error recovery for multi-turn interactions</li>
+          <li>Voice-first dialogue patterns — barge-in handling, confirmation strategies, speech-interface error recovery</li>
+          <li>Secure enterprise integration: authentication, access controls, audit logging, and monitoring</li>
+          <li>Documented dialogue flows, prompts, and design rationale for cross-functional teams</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">Voice UX</span><span class="tag">Dialogue Management</span><span class="tag">Cloud-Native</span>
+        </div>
+        <div class="outcome"><div class="num">2</div><span style="color:var(--muted);font-size:.88rem">modalities shipped: chat + voice</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Dialogue Design</div>
+      <h2>How I design a conversation</h2>
+      <p>My standard architecture for enterprise assistants: classify intent, ground with retrieval, generate with guardrails, and always design the fallback first.</p>
+    </div>
+    <div class="flow-wrap">
+      <div class="flow">
+        <div class="node intent"><div class="icon">🎯</div><b>Intent Classifier</b><span>manufacturing · formulation · regulatory · out-of-scope</span></div>
+        <div class="arrow">→</div>
+        <div class="node rag"><div class="icon">📚</div><b>RAG Retrieval</b><span>vector search over domain docs + embeddings</span></div>
+        <div class="arrow">→</div>
+        <div class="node gen"><div class="icon">💬</div><b>Response Generator</b><span>LLM + prompt engineering, cited sources</span></div>
+        <div class="arrow">→</div>
+        <div class="node fallback"><div class="icon">🛟</div><b>Fallback Strategy</b><span>clarify → suggest → human handoff</span></div>
+      </div>
+      <div class="flow-legend">
+        <span><span class="dot" style="background:var(--acc)"></span>Intent &amp; NLU</span>
+        <span><span class="dot" style="background:var(--acc2)"></span>Retrieval</span>
+        <span><span class="dot" style="background:var(--green)"></span>Generation</span>
+        <span><span class="dot" style="background:var(--amber)"></span>Safety nets</span>
+      </div>
+    </div>
+    <div style="margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
+      <div class="skill-cat"><h3>1 · Discover</h3><p style="color:var(--muted);font-size:.92rem">User research, intent taxonomies, conversation audits of existing support logs.</p></div>
+      <div class="skill-cat"><h3>2 · Design</h3><p style="color:var(--muted);font-size:.92rem">Dialogue flows, decision trees, persona and tone guidelines, prompt architecture.</p></div>
+      <div class="skill-cat"><h3>3 · Build</h3><p style="color:var(--muted);font-size:.92rem">Bot platforms (Copilot Studio), LLM orchestration, RAG pipelines, integrations.</p></div>
+      <div class="skill-cat"><h3>4 · Evaluate</h3><p style="color:var(--muted);font-size:.92rem">Golden datasets, conversation analytics, fallback-rate tracking, continuous refinement.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Skills</div>
+      <h2>Toolbox</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3>Conversation Design</h3>
+        <div class="tags">
+          <span class="tag">Multi-turn Dialogue</span><span class="tag">Intent Recognition</span><span class="tag">Entity Extraction</span><span class="tag">Dialogue Management</span><span class="tag">Context Management</span><span class="tag">Fallback Handling</span><span class="tag">User Journey Mapping</span><span class="tag">Voice UX</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>LLMs &amp; RAG</h3>
+        <div class="tags">
+          <span class="tag">Azure OpenAI</span><span class="tag">Prompt Engineering</span><span class="tag">RAG Pipelines</span><span class="tag">Vector Search</span><span class="tag">Embeddings</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Evaluation</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Bot Platforms</h3>
+        <div class="tags">
+          <span class="tag">Copilot Studio</span><span class="tag">Azure Bot Framework</span><span class="tag">Dialogflow CX</span><span class="tag">Voiceflow</span><span class="tag">Bot Framework Composer</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Engineering</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">REST APIs</span><span class="tag">Azure</span><span class="tag">CI/CD</span><span class="tag">Observability</span><span class="tag">HITL Systems</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <div class="kicker">Live Demo</div>
+      <h2>Try a mini dialogue manager</h2>
+      <p style="margin-left:auto;margin-right:auto">A simplified version of the intent-classification pattern used in the CMC assistant. Type a question or tap a chip.</p>
+    </div>
+    <div class="demo-shell">
+      <div class="demo-head">
+        <div class="avatar">H</div>
+        <div><b>CMC Assistant</b><span>● online — demo mode</span></div>
+      </div>
+      <div id="chat"></div>
+      <div class="chips" id="chips">
+        <button class="chip" data-q="What is the batch manufacturing process?">Batch manufacturing process</button>
+        <button class="chip" data-q="Show me excipient ratios for the formulation">Excipient ratios</button>
+        <button class="chip" data-q="What are the regulatory filing requirements?">Filing requirements</button>
+        <button class="chip" data-q="What's the weather today?">Off-topic question</button>
+      </div>
+      <div class="demo-input">
+        <input id="userInput" type="text" placeholder="Ask about manufacturing, formulation, or regulatory…" autocomplete="off">
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+    <p class="demo-note">Demo runs entirely in your browser — no data leaves this page.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:10px">
+      <div class="kicker">Contact</div>
+      <h2>Let's talk about conversational AI</h2>
+    </div>
+    <p>Open to contract opportunities in conversational AI, GenAI engineering, and agentic AI.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn primary" href="mailto:hemasriinturi31@gmail.com">hemasriinturi31@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/hema-inturi31/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/hemasri-inturi/Conversational-AI-Portfolio" target="_blank" rel="noopener">GitHub Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Hemasri Inturi · Senior Conversational AI Engineer · Built with care, no templates harmed.</div>
+</footer>
+
+<script>
+(function(){
+  var chat = document.getElementById('chat');
+  var input = document.getElementById('userInput');
+  var sendBtn = document.getElementById('sendBtn');
+  var turn = 0;
+
+  var KB = {
+    manufacturing: [
+      "Batch records live in the MES with lot genealogy.",
+      "Typical batch cycle: dispensing → granulation → compression → coating → packaging."
+    ],
+    formulation: [
+      "Excipient ratios are formulation-specific; the assistant retrieves the approved bill of materials.",
+      "Stability data is pulled from the registered formulation dossier."
+    ],
+    regulatory: [
+      "CMC sections of the filing: Module 3 (Quality) — drug substance and drug product.",
+      "Change control requires impact assessment before implementation."
+    ]
+  };
+
+  function classify(t){
+    t = t.toLowerCase();
+    if (/(manufactur|batch|process|sop|mes)/.test(t)) return 'manufacturing';
+    if (/(formulat|excipient|ingredient|dossier|stability)/.test(t)) return 'formulation';
+    if (/(regulat|filing|compliance|module|change control)/.test(t)) return 'regulatory';
+    return 'out_of_scope';
+  }
+
+  function addMsg(text, who, intent){
+    var d = document.createElement('div');
+    d.className = 'msg ' + who;
+    if (intent) {
+      var i = document.createElement('span');
+      i.className = 'intent';
+      i.textContent = 'intent: ' + intent;
+      d.appendChild(i);
+    }
+    d.appendChild(document.createTextNode(text));
+    chat.appendChild(d);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function respond(q){
+    turn++;
+    addMsg(q, 'user');
+    setTimeout(function(){
+      var intent = classify(q);
+      if (intent === 'out_of_scope') {
+        if (turn >= 3) {
+          addMsg("I'm looping on out-of-scope questions — handing off to a specialist with full conversation context.", 'bot', 'out_of_scope → handoff');
+        } else {
+          addMsg("I can help with manufacturing, formulation, or regulatory questions about the CMC portfolio. Which topic would you like?", 'bot', 'out_of_scope → clarify');
+        }
+        return;
+      }
+      var answers = KB[intent];
+      var a = answers[Math.floor(Math.random()*answers.length)];
+      addMsg("[RAG · cited sources] " + a, 'bot', intent);
+    }, 550);
+  }
+
+  sendBtn.addEventListener('click', function(){
+    var v = input.value.trim();
+    if (!v) return;
+    input.value = '';
+    respond(v);
+  });
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter') sendBtn.click(); });
+  document.getElementById('chips').addEventListener('click', function(e){
+    var b = e.target.closest('.chip');
+    if (b) respond(b.getAttribute('data-q'));
+  });
+
+  setTimeout(function(){
+    addMsg("Hi! I'm a demo of the dialogue pattern behind the CMC Knowledge Assistant. Ask me about manufacturing, formulation, or regulatory topics.", 'bot', 'greeting');
+  }, 400);
+})();
+</script>
+</body>
+</html>
